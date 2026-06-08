@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nikoh To'yi Taklifnomasi | Wedding Invitation</title>
+  <meta name="description" content="Sizni nikoh to'yimiz tantanasiga taklif etamiz. Ushbu sahifada to'y tafsilotlari va manzil ko'rsatilgan.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-royal-blue">
+
+  <!-- Background Music Element -->
+  <audio id="bg-music" loop preload="auto">
+    <!-- Traditional gentle oriental instrumental track (we can provide a royalty-free URL, and a fall back) -->
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Golden Particle Background -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Envelope Screen (Intro) -->
+  <div id="envelope-screen" class="envelope-screen">
+    <div class="envelope-wrapper">
+      <div class="envelope" id="main-envelope">
+        <!-- Inside Envelope Paper -->
+        <div class="envelope-inside"></div>
+        
+        <!-- Flaps -->
+        <div class="flap top-flap"></div>
+        <div class="flap left-flap"></div>
+        <div class="flap right-flap"></div>
+        <div class="flap bottom-flap"></div>
+        
+        <!-- Wax Seal (Button to Open) -->
+        <div class="wax-seal" id="open-seal">
+          <div class="seal-inner">
+            <!-- Mini version of our Uzbek pattern inside -->
+            <img src="uzbek_pattern.svg" alt="Seal Emblem" class="seal-emblem">
+          </div>
+          <span class="seal-pulsar"></span>
+          <div class="seal-label">Ochish uchun bosing</div>
+        </div>
+
+        <!-- Floating Card Preview (partially showing inside envelope) -->
+        <div class="card-preview">
+          <div class="preview-content">
+            <span class="preview-title">Taklifnoma</span>
+            <div class="preview-names"><span class="groom-name-txt">Kamron</span> & <span class="bride-name-txt">Madina</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Invitation Main Content Page -->
+  <main id="main-invitation" class="main-invitation hidden">
+    <!-- Top Decorative Border -->
+    <div class="top-ornament-bar"></div>
+
+    <!-- Cover Section -->
+    <section class="section cover-section text-center" id="cover">
+      <div class="ornament-container scroll-animate">
+        <img src="uzbek_pattern.svg" alt="Uzbek Ornament" class="uzbek-ornament-hero">
+      </div>
+      
+      <p class="bismillah scroll-animate">Bismillahir Rohmanir Rohiym</p>
+      <h2 class="invitation-subtitle scroll-animate">Nikoh To'yi Taklifnomasi</h2>
+      
+      <div class="names-wrapper scroll-animate">
+        <h1 class="groom-name groom-name-txt">Kamron</h1>
+        <div class="and-symbol">&</div>
+        <h1 class="bride-name bride-name-txt">Madina</h1>
+      </div>
+      
+      <div class="ornament-line scroll-animate">
+        <span class="line-wing left"></span>
+        <span class="ornament-bullet">✦</span>
+        <span class="line-wing right"></span>
+      </div>
+
+      <p class="invitation-intro scroll-animate">
+        Aziz va qadrli mehmonlar! <br>
+        Sizlarni ikki yoshning pokiza muhabbat rishtalari bog'lanadigan nikoh to'yi munosabati bilan yoziladigan dasturxonimizga taklif etamiz.
+      </p>
+      
+      <div class="scroll-indicator">
+        <span class="arrow-down"></span>
+      </div>
+    </section>
+
+    <!-- Date, Time and Countdown Section -->
+    <section class="section date-section text-center" id="date-time">
+      <div class="container">
+        <h3 class="section-title scroll-animate">Tantana Kuni</h3>
+        
+        <div class="date-display scroll-animate">
+          <div class="date-badge">
+            <div class="date-month" id="wedding-month">IYUL</div>
+            <div class="date-day" id="wedding-day">12</div>
+            <div class="date-year" id="wedding-year">2026</div>
+          </div>
+          <div class="date-day-name" id="wedding-weekday">YAKSHANBA</div>
+        </div>
+
+        <div class="countdown-container scroll-animate">
+          <h4 class="countdown-title">To'yimizga qoldi:</h4>
+          <div class="countdown-timer" id="countdown">
+            <div class="countdown-item">
+              <span class="number" id="days">00</span>
+              <span class="label">Kun</span>
+            </div>
+            <div class="countdown-item">
+              <span class="number" id="hours">00</span>
+              <span class="label">Soat</span>
+            </div>
+            <div class="countdown-item">
+              <span class="number" id="minutes">00</span>
+              <span class="label">Daqiqa</span>
+            </div>
+            <div class="countdown-item">
+              <span class="number" id="seconds">00</span>
+              <span class="label">Soniya</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Program / Timeline Section -->
+    <section class="section program-section" id="program">
+      <div class="container">
+        <h3 class="section-title text-center scroll-animate">Dastur</h3>
+        
+        <div class="timeline">
+          <!-- Item 1: Morning Pilaf -->
+          <div class="timeline-item scroll-animate">
+            <div class="timeline-time">
+              <span class="time-txt" id="event1-time">07:00</span>
+            </div>
+            <div class="timeline-icon">
+              <!-- Inline SVG for bowl/food -->
+              <svg viewBox="0 0 24 24" class="svg-icon">
+                <path d="M2,21H22V19H2M20,12V10H18V5H16V10H8V5H6V10H4V12C4,14.5 5.81,16.6 8.25,17.08C9.4,17.6 10.7,17.9 12,17.9C13.3,17.9 14.6,17.6 15.75,17.08C18.19,16.6 20,14.5 20,12Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="timeline-content">
+              <h4 id="event1-title">Nahorgi Osh</h4>
+              <p id="event1-desc">Yaqinlarimiz davrasida to'yona milliy taomimiz - Nahorgi Osh dasturxoni.</p>
+            </div>
+          </div>
+
+          <!-- Item 2: Ceremony -->
+          <div class="timeline-item scroll-animate">
+            <div class="timeline-time">
+              <span class="time-txt" id="event2-time">18:00</span>
+            </div>
+            <div class="timeline-icon">
+              <!-- Inline SVG for Ring -->
+              <svg viewBox="0 0 24 24" class="svg-icon">
+                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M12,2C13.5,2 14.5,3 14.5,4.5C14.5,5.5 13.8,6.3 13,6.5L13,8H11L11,6.5C10.2,6.3 9.5,5.5 9.5,4.5C9.5,3 10.5,2 12,2Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="timeline-content">
+              <h4 id="event2-title">FHOD (ZAGS) marosimi</h4>
+              <p id="event2-desc">Nikohni rasmiy ro'yxatdan o'tkazish va yoshlarning tantanali qasamyod qilishlari.</p>
+            </div>
+          </div>
+
+          <!-- Item 3: Dinner -->
+          <div class="timeline-item scroll-animate">
+            <div class="timeline-time">
+              <span class="time-txt" id="event3-time">19:00</span>
+            </div>
+            <div class="timeline-icon">
+              <!-- Inline SVG for champagne/celebration -->
+              <svg viewBox="0 0 24 24" class="svg-icon">
+                <path d="M7.5,2H16.5L15,10H9L7.5,2M12,13A3,3 0 0,0 9,16V22H15V16A3,3 0 0,0 12,13M12,5A1.5,1.5 0 0,1 13.5,6.5A1.5,1.5 0 0,1 12,8A1.5,1.5 0 0,1 10.5,6.5A1.5,1.5 0 0,1 12,5Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="timeline-content">
+              <h4 id="event3-title">Visol Oqshomi (Tantanali Bazm)</h4>
+              <p id="event3-desc">Kuyov va kelinning to'y oqshomi, musiqali va ko'ngilochar bayram dasturi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Location & Venue Map Section -->
+    <section class="section location-section text-center" id="location">
+      <div class="container">
+        <h3 class="section-title scroll-animate">Manzil va Joylashuv</h3>
+        
+        <div class="venue-info scroll-animate">
+          <h4 id="venue-name">"Versal" To'yxonasi</h4>
+          <p id="venue-address">Toshkent shahri, Yunusobod tumani, Bog'ishamol ko'chasi, 23-uy</p>
+        </div>
+        
+        <!-- Yandex or Google Maps Mock frame that looks gorgeous and custom -->
+        <div class="map-container scroll-animate">
+          <div class="map-overlay">
+            <svg viewBox="0 0 24 24" class="map-pin-icon">
+              <path d="M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5Z" fill="currentColor"/>
+            </svg>
+            <span class="map-instruction">Xaritada to'liq ko'rish uchun pastdagi tugmani bosing</span>
+          </div>
+          <!-- Real standard placeholder map frame or a customized graphic container -->
+          <iframe 
+            id="map-iframe"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.096739665561!2d69.28828941566872!3d41.32849880757303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b472e3ab6ad%3A0xd68cb020d58850ff!2sVersal!5e0!3m2!1suz!2s!4v1622384758963!5m2!1suz!2s" 
+            width="100%" 
+            height="350" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy">
+          </iframe>
+        </div>
+
+        <div class="btn-group scroll-animate">
+          <a href="https://maps.google.com/?q=Versal+Toyxonasi+Tashkent" id="map-url" target="_blank" class="btn btn-gold">
+            <svg viewBox="0 0 24 24" class="btn-icon">
+              <path d="M12,2c-4.4,0-8,3.6-8,8c0,5.3,8,12,8,12s8-6.7,8-12C20,5.6,16.4,2,12,2z M12,13c-1.7,0-3-1.3-3-3s1.3-3,3-3s3,1.3,3,3 S13.7,13,12,13z" fill="currentColor"/>
+            </svg>
+            Google Xaritada ochish
+          </a>
+          <a href="https://yandex.uz/maps/?text=Versal+Toyxonasi+Tashkent" id="yandex-map-url" target="_blank" class="btn btn-outline">
+            Yandex Xaritada ochish
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP Kelishni Tasdiqlash Section -->
+    <section class="section rsvp-section" id="rsvp">
+      <div class="container">
+        <h3 class="section-title text-center scroll-animate">Kelishingizni tasdiqlang</h3>
+        <p class="section-subtitle text-center scroll-animate">Biz uchun har bir mehmonning tashrifi juda muhim. Iltimos, ishtirok etishingizni tasdiqlang.</p>
+        
+        <div class="rsvp-card scroll-animate">
+          <form id="rsvp-form" class="rsvp-form">
+            <div class="form-group">
+              <label for="guest-name">Sizning ismingiz va familiyangiz:</label>
+              <input type="text" id="guest-name" required placeholder="Masalan: Dilmurodjon Karimov" class="form-control">
+            </div>
+            
+            <div class="form-group">
+              <label>Tashrifingiz:</label>
+              <div class="rsvp-options">
+                <label class="rsvp-option-label">
+                  <input type="radio" name="attendance" value="yes" checked class="rsvp-radio">
+                  <span class="custom-radio-card">
+                    <span class="icon">✓</span>
+                    <span class="label-txt">Albatta boraman</span>
+                  </span>
+                </label>
+                <label class="rsvp-option-label">
+                  <input type="radio" name="attendance" value="no" class="rsvp-radio">
+                  <span class="custom-radio-card">
+                    <span class="icon">✗</span>
+                    <span class="label-txt">Afsuski bora olmayman</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group guest-count-group">
+              <label for="guest-count">Mehmonlar soni (o'zingiz bilan):</label>
+              <div class="count-selector">
+                <button type="button" class="btn-count-step" id="btn-dec">-</button>
+                <input type="number" id="guest-count" value="1" min="1" max="10" readonly class="count-input">
+                <button type="button" class="btn-count-step" id="btn-inc">+</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="guest-message">Tabrik va tilaklaringiz (ixtiyoriy):</label>
+              <textarea id="guest-message" placeholder="Yoshlarga baxt tilab, samimiy so'zlaringizni yozishingiz mumkin..." rows="3" class="form-control"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-gold btn-block" id="btn-submit-rsvp">
+              Yuborish
+            </button>
+          </form>
+
+          <!-- Success Message Container -->
+          <div id="rsvp-success" class="rsvp-success hidden">
+            <div class="success-icon">
+              <!-- Animated Heart / Check SVG -->
+              <svg viewBox="0 0 24 24" class="svg-success-heart">
+                <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <h4>Katta rahmat!</h4>
+            <p>Javobingiz muvaffaqiyatli yuborildi. Sizni to'yimizda kutib qolamiz!</p>
+            <button type="button" class="btn btn-outline btn-sm" id="btn-rsvp-reset">Yangi javob yuborish</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Guestbook / Wishes Carousel Section -->
+    <section class="section guestbook-section" id="guestbook">
+      <div class="container">
+        <h3 class="section-title text-center scroll-animate">Mehmonlar Tilaklari</h3>
+        <p class="section-subtitle text-center scroll-animate">Yaqinlarimiz tomonidan yozilgan eng go'zal va samimiy tilaklar.</p>
+        
+        <div class="wishes-carousel-wrapper scroll-animate">
+          <div class="wishes-track" id="wishes-container">
+            <!-- Wishes will be loaded via JS -->
+            <div class="wish-card">
+              <p class="wish-text">"Ikki dunyo saodatini nasib etsin, baxtingizga ko'z tegmasin. Qo'sha qaringlar!"</p>
+              <h5 class="wish-author">- Oila a'zolaringiz nomidan</h5>
+            </div>
+            <div class="wish-card">
+              <p class="wish-text">"Muxabbat yulduzi har doim charaqlab tursin. Yoshlarga baxt va salomatlik tilaymiz!"</p>
+              <h5 class="wish-author">- Do'stlaringiz va sinfdoshlar</h5>
+            </div>
+          </div>
+          
+          <div class="carousel-controls">
+            <button type="button" class="btn-carousel-nav" id="btn-prev-wish">←</button>
+            <button type="button" class="btn-carousel-nav" id="btn-next-wish">→</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+      <img src="uzbek_pattern.svg" alt="Pattern Footer" class="uzbek-ornament-footer">
+      <p class="footer-thank">Tashrifingiz uchun oldindan minnatdorchilik bildiramiz!</p>
+      <div class="love-footer">
+        <span class="groom-name-txt">Kamron</span> 
+        <svg viewBox="0 0 24 24" class="footer-heart">
+          <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" fill="currentColor"/>
+        </svg>
+        <span class="bride-name-txt">Madina</span>
+      </div>
+      <p class="footer-copyright">&copy; 2026 Barcha huquqlar himoyalangan.</p>
+    </footer>
+  </main>
+
+  <!-- FLOATING CONTROLS -->
+  
+  <!-- Music Player Controller -->
+  <button id="music-toggle" class="floating-btn music-btn playing" aria-label="Musiqani yoqish/o'chirish">
+    <span class="music-waves">
+      <span></span><span></span><span></span><span></span>
+    </span>
+    <!-- Equalizer icon fallback or just waves -->
+    <svg viewBox="0 0 24 24" class="music-icon-svg">
+      <path d="M12,3V12.26C11.5,12.09 11,12 10.5,12C8,12 6,14 6,16.5C6,19 8,21 10.5,21C13,21 15,19 15,16.5V6H19V3H12Z" fill="currentColor"/>
+    </svg>
+  </button>
+
+  <!-- Edit Panel Trigger (Settings for Host) -->
+  <button id="editor-trigger" class="floating-btn editor-btn" aria-label="Tahrirlash panelini ochish">
+    <svg viewBox="0 0 24 24" class="editor-icon-svg">
+      <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.47,5.34 14.86,5.08L14.47,2.42C14.43,2.18 14.22,2 13.97,2H9.97C9.72,2 9.51,2.18 9.47,2.42L9.08,5.08C8.47,5.34 7.9,5.66 7.38,6.05L4.89,5.05C4.67,4.96 4.4,5.05 4.28,5.27L2.28,8.73C2.16,8.95 2.22,9.22 2.41,9.37L4.53,11C4.49,11.32 4.46,11.64 4.46,12C4.46,12.32 4.49,12.65 4.53,13L2.41,14.63C2.22,14.78 2.16,15.05 2.28,15.27L4.28,18.73C4.4,18.95 4.67,19.04 4.89,18.95L7.38,17.95C7.9,18.34 8.47,18.66 9.08,18.92L9.47,21.58C9.51,21.82 9.72,22 9.97,22H13.97C14.22,22 14.43,21.82 14.47,21.58L14.86,18.92C15.47,18.66 16.04,18.34 16.56,17.95L19.05,18.95C19.27,19.04 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" fill="currentColor"/>
+    </svg>
+  </button>
+
+  <!-- Host Settings Editor Panel -->
+  <aside id="editor-panel" class="editor-panel">
+    <div class="editor-header">
+      <h3>Taklifnomani tahrirlash</h3>
+      <button id="editor-close" class="btn-close">&times;</button>
+    </div>
+    <div class="editor-body">
+      <p class="editor-tip">Ushbu panel to'y egasiga taklifnomadagi ma'lumotlarni o'zgartirish imkonini beradi. O'zgarishlar brauzerda saqlanib qoladi.</p>
+      
+      <form id="editor-form">
+        <!-- Names -->
+        <div class="form-group-sm">
+          <label for="edit-groom">Kuyov ismi:</label>
+          <input type="text" id="edit-groom" class="form-control-sm" value="Kamron">
+        </div>
+        <div class="form-group-sm">
+          <label for="edit-bride">Kelin ismi:</label>
+          <input type="text" id="edit-bride" class="form-control-sm" value="Madina">
+        </div>
+        
+        <!-- Date and Time -->
+        <div class="form-group-sm">
+          <label for="edit-date">To'y sanasi (Yil-Oy-Kun):</label>
+          <input type="date" id="edit-date" class="form-control-sm" value="2026-07-12">
+        </div>
+        <div class="form-group-sm">
+          <label for="edit-weekday">Hafta kuni:</label>
+          <input type="text" id="edit-weekday" class="form-control-sm" value="YAKSHANBA">
+        </div>
+        
+        <!-- Events Timeline -->
+        <fieldset class="editor-fieldset">
+          <legend>Tadbirlar vaqti</legend>
+          <div class="form-group-sm">
+            <label for="edit-osh-time">Nahorgi Osh vaqti:</label>
+            <input type="text" id="edit-osh-time" class="form-control-sm" value="07:00">
+          </div>
+          <div class="form-group-sm">
+            <label for="edit-zags-time">Nikoh marosimi (ZAGS):</label>
+            <input type="text" id="edit-zags-time" class="form-control-sm" value="18:00">
+          </div>
+          <div class="form-group-sm">
+            <label for="edit-bazm-time">Visol oqshomi (Bazm):</label>
+            <input type="text" id="edit-bazm-time" class="form-control-sm" value="19:00">
+          </div>
+        </fieldset>
+
+        <!-- Location -->
+        <div class="form-group-sm">
+          <label for="edit-venue">To'yxona nomi:</label>
+          <input type="text" id="edit-venue" class="form-control-sm" value="&quot;Versal&quot; To'yxonasi">
+        </div>
+        <div class="form-group-sm">
+          <label for="edit-address">To'yxona manzili:</label>
+          <input type="text" id="edit-address" class="form-control-sm" value="Toshkent shahri, Yunusobod tumani, Bog'ishamol ko'chasi, 23-uy">
+        </div>
+        <div class="form-group-sm">
+          <label for="edit-map-url">Google Maps URL:</label>
+          <input type="text" id="edit-map-url" class="form-control-sm" value="https://maps.google.com/?q=Versal+Toyxonasi+Tashkent">
+        </div>
+        <div class="form-group-sm">
+          <label for="edit-yandex-url">Yandex Maps URL:</label>
+          <input type="text" id="edit-yandex-url" class="form-control-sm" value="https://yandex.uz/maps/?text=Versal+Toyxonasi+Tashkent">
+        </div>
+        <div class="form-group-sm">
+          <label for="edit-embed-url">Iframe Maps Embed URL:</label>
+          <input type="text" id="edit-embed-url" class="form-control-sm" value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.096739665561!2d69.28828941566872!3d41.32849880757303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b472e3ab6ad%3A0xd68cb020d58850ff!2sVersal!5e0!3m2!1suz!2s!4v1622384758963!5m2!1suz!2s">
+        </div>
+
+        <!-- Music & Theme Selection -->
+        <div class="form-group-sm">
+          <label for="edit-music">Musiqa fayli URL (MP3):</label>
+          <input type="text" id="edit-music" class="form-control-sm" value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+        </div>
+        
+        <div class="form-group-sm">
+          <label for="edit-theme">Rang mavzusi (Dizayn):</label>
+          <select id="edit-theme" class="form-control-sm">
+            <option value="theme-royal-blue">To'q Ko'k & Oltin (Royal Blue)</option>
+            <option value="theme-emerald-green">Zumrad Yashil & Oltin (Emerald)</option>
+            <option value="theme-burgundy">To'q Qizil & Oltin (Burgundy)</option>
+            <option value="theme-ivory">Fildishi & Oltin (Ivory Gold)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-gold btn-block btn-sm">Saqlash va yangilash</button>
+      </form>
+    </div>
+  </aside>
+
+  <!-- JS Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>

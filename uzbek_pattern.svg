@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#AA771C" />
+      <stop offset="25%" stop-color="#FBF5B7" />
+      <stop offset="50%" stop-color="#B38728" />
+      <stop offset="75%" stop-color="#FCF6BA" />
+      <stop offset="100%" stop-color="#BF953F" />
+    </linearGradient>
+    <linearGradient id="goldGradSoft" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#B38728" />
+      <stop offset="50%" stop-color="#FBF5B7" />
+      <stop offset="100%" stop-color="#AA771C" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Group of patterns -->
+  <g transform="translate(50, 50)" filter="url(#shadow)">
+    <!-- Outer Decorative Dotted Ring -->
+    <circle r="46" fill="none" stroke="url(#goldGrad)" stroke-width="1" stroke-dasharray="1 2"/>
+    
+    <!-- Outer Star Ring -->
+    <circle r="43" fill="none" stroke="url(#goldGrad)" stroke-width="1.5"/>
+    
+    <!-- 8-pointed main geometric frame (Islamic/Uzbek Girih pattern) -->
+    <path d="M 0,-40 L 11.7,-28.3 L 28.3,-28.3 L 28.3,-11.7 L 40,0 L 28.3,11.7 L 28.3,28.3 L 11.7,28.3 L 0,40 L -11.7,28.3 L -28.3,28.3 L -28.3,11.7 L -40,0 L -28.3,-11.7 L -28.3,-28.3 L -11.7,-28.3 Z" 
+          fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-linejoin="round"/>
+          
+    <!-- Offset 8-pointed star to form 16-point look -->
+    <path d="M 0,-40 L 11.7,-28.3 L 28.3,-28.3 L 28.3,-11.7 L 40,0 L 28.3,11.7 L 28.3,28.3 L 11.7,28.3 L 0,40 L -11.7,28.3 L -28.3,28.3 L -28.3,11.7 L -40,0 L -28.3,-11.7 L -28.3,-28.3 L -11.7,-28.3 Z" 
+          fill="none" stroke="url(#goldGrad)" stroke-width="1" stroke-linejoin="round" transform="rotate(22.5)"/>
+
+    <!-- Inner Circle Border -->
+    <circle r="25" fill="none" stroke="url(#goldGrad)" stroke-width="1.5"/>
+
+    <!-- Floral / Heart petal elements (8 repetitions) -->
+    <g id="petals">
+      <!-- Petal 1 -->
+      <path d="M 0,0 C -5,-12 -12,-12 -8,-22 C -4,-18 0,-15 0,-24 C 0,-15 4,-18 8,-22 C 12,-12 5,-12 0,0 Z" fill="url(#goldGrad)" opacity="0.85"/>
+      <!-- Petal 2 (rotated 45) -->
+      <path d="M 0,0 C -5,-12 -12,-12 -8,-22 C -4,-18 0,-15 0,-24 C 0,-15 4,-18 8,-22 C 12,-12 5,-12 0,0 Z" fill="url(#goldGrad)" opacity="0.85" transform="rotate(45)"/>
+      <!-- Petal 3 (rotated 90) -->
+      <path d="M 0,0 C -5,-12 -12,-12 -8,-22 C -4,-18 0,-15 0,-24 C 0,-15 4,-18 8,-22 C 12,-12 5,-12 0,0 Z" fill="url(#goldGrad)" opacity="0.85" transform="rotate(90)"/>
+      <!-- Petal 4 (rotated 135) -->
+      <path d="M 0,0 C -5,-12 -12,-12 -8,-22 C -4,-18 0,-15 0,-24 C 0,-15 4,-18 8,-22 C 12,-12 5,-12 0,0 Z" fill="url(#goldGrad)" opacity="0.85" transform="rotate(135)"/>
+      <!-- Petal 5 (rotated 180) -->
+      <path d="M 0,0 C -5,-12 -12,-12 -8,-22 C -4,-18 0,-15 0,-24 C 0,-15 4,-18 8,-22 C 12,-12 5,-12 0,0 Z" fill="url(#goldGrad)" opacity="0.85" transform="rotate(180)"/>
+      <!-- Petal 6 (rotated 225) -->
+      <path d="M 0,0 C -5,-12 -12,-12 -8,-22 C -4,-18 0,-15 0,-24 C 0,-15 4,-18 8,-22 C 12,-12 5,-12 0,0 Z" fill="url(#goldGrad)" opacity="0.85" transform="rotate(225)"/>
+      <!-- Petal 7 (rotated 270) -->
+      <path d="M 0,0 C -5,-12 -12,-12 -8,-22 C -4,-18 0,-15 0,-24 C 0,-15 4,-18 8,-22 C 12,-12 5,-12 0,0 Z" fill="url(#goldGrad)" opacity="0.85" transform="rotate(270)"/>
+      <!-- Petal 8 (rotated 315) -->
+      <path d="M 0,0 C -5,-12 -12,-12 -8,-22 C -4,-18 0,-15 0,-24 C 0,-15 4,-18 8,-22 C 12,-12 5,-12 0,0 Z" fill="url(#goldGrad)" opacity="0.85" transform="rotate(315)"/>
+    </g>
+
+    <!-- Center Medallion Inner Star -->
+    <path d="M 0,-8 L 2.5,-2.5 L 8,0 L 2.5,2.5 L 0,8 L -2.5,2.5 L -8,0 L -2.5,-2.5 Z" fill="#fffaf0" />
+    <circle r="3" fill="url(#goldGradSoft)"/>
+  </g>
+</svg>
