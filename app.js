@@ -13,10 +13,10 @@
 document.addEventListener('DOMContentLoaded', () => {
   // --- CONFIGURATION MANAGEMENT ---
   const DEFAULT_CONFIG = {
-    groomName: 'Kamron',
-    brideName: 'Madina',
-    weddingDate: '2026-07-12',
-    weddingWeekday: 'YAKSHANBA',
+    groomName: 'Ibroximjon',
+    brideName: 'Layloxon',
+    weddingDate: '2026-08-10',
+    weddingWeekday: 'DUSHANBA',
     event1Time: '07:00',
     event1Title: 'Nahorgi Osh',
     event1Desc: 'Yaqinlarimiz davrasida to\'yona milliy taomimiz - Nahorgi Osh dasturxoni.',
@@ -26,16 +26,15 @@ document.addEventListener('DOMContentLoaded', () => {
     event3Time: '19:00',
     event3Title: 'Visol Oqshomi (Tantanali Bazm)',
     event3Desc: 'Kuyov va kelinning to\'y oqshomi, musiqali va ko\'ngilochar bayram dasturi.',
-    venueName: '"Versal" To\'yxonasi',
-    venueAddress: 'Toshkent shahri, Yunusobod tumani, Bog\'ishamol ko\'chasi, 23-uy',
-    mapUrl: 'https://maps.google.com/?q=Versal+Toyxonasi+Tashkent',
-    yandexMapUrl: 'https://yandex.uz/maps/?text=Versal+Toyxonasi+Tashkent',
-    embedMapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.096739665561!2d69.28828941566872!3d41.32849880757303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b472e3ab6ad%3A0xd68cb020d58850ff!2sVersal!5e0!3m2!1suz!2s!4v1622384758963!5m2!1suz!2s',
-    musicUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    venueName: '"Orom" To\'yxonasi',
+    venueAddress: 'Toshkent viloyati, Bekobod tumani, Zafar shaharchasi',
+    mapUrl: 'https://maps.app.goo.gl/gdw7KGiGoUWfCj4S6',
+    yandexMapUrl: 'https://yandex.uz/maps/-/CTqkBOlI',
+    embedMapUrl: 'https://maps.google.com/maps?q=40.3809711,69.2532192&t=&z=15&ie=UTF8&iwloc=&output=embed',
     theme: 'theme-royal-blue'
   };
 
-  let config = JSON.parse(localStorage.getItem('wedding_invitation_config')) || DEFAULT_CONFIG;
+  let config = JSON.parse(localStorage.getItem('wedding_invitation_config_v2')) || DEFAULT_CONFIG;
 
   // Seeding initial guestbook comments if empty
   const DEFAULT_WISHES = [
@@ -47,8 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let guestWishes = JSON.parse(localStorage.getItem('wedding_invitation_wishes')) || DEFAULT_WISHES;
 
   // DOM Elements
-  const bgMusic = document.getElementById('bg-music');
-  const musicToggle = document.getElementById('music-toggle');
   const openSeal = document.getElementById('open-seal');
   const mainEnvelope = document.getElementById('main-envelope');
   const envelopeScreen = document.getElementById('envelope-screen');
@@ -97,6 +94,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const editorClose = document.getElementById('editor-close');
   const editorForm = document.getElementById('editor-form');
 
+  // --- USER/ADMIN QUERY PARAM CHECK ---
+  const urlParams = new URLSearchParams(window.location.search);
+  const isAdmin = urlParams.get('user') === 'admin' || urlParams.get('user') === 'true';
+  if (isAdmin) {
+    if (editorTrigger) editorTrigger.style.display = 'flex';
+  } else {
+    if (editorTrigger) editorTrigger.style.display = 'none';
+  }
+
   // --- INITIALIZE PAGE WITH CONFIG ---
   function applyConfig() {
     // Set theme
@@ -135,17 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
     mapUrlBtn.href = config.mapUrl;
     yandexMapUrlBtn.href = config.yandexMapUrl;
 
-    // Music
-    const musicSource = bgMusic.querySelector('source');
-    if (musicSource.src !== config.musicUrl) {
-      musicSource.src = config.musicUrl;
-      bgMusic.load();
-      // If it was already playing, attempt to resume
-      if (musicToggle.classList.contains('playing') && !bgMusic.paused) {
-        bgMusic.play().catch(e => console.log('Audio playback request failed: ', e));
-      }
-    }
-
     // Populate Editor fields
     document.getElementById('edit-groom').value = config.groomName;
     document.getElementById('edit-bride').value = config.brideName;
@@ -159,21 +154,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('edit-map-url').value = config.mapUrl;
     document.getElementById('edit-yandex-url').value = config.yandexMapUrl;
     document.getElementById('edit-embed-url').value = config.embedMapUrl;
-    document.getElementById('edit-music').value = config.musicUrl;
     document.getElementById('edit-theme').value = config.theme;
   }
 
   // --- ENVELOPE TRANSTIONS (OPEN INVITATION) ---
   openSeal.addEventListener('click', (e) => {
     e.stopPropagation(); // Prevent duplicate clicks
-    
-    // Play sound (with fallback)
-    bgMusic.play().then(() => {
-      musicToggle.classList.add('playing');
-    }).catch(err => {
-      console.log('Audio autoplay blocked, will wait for user to toggle music manually.');
-      musicToggle.classList.remove('playing');
-    });
 
     // 1. Open Envelope top flap
     mainEnvelope.classList.add('opened');
@@ -194,18 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // Initialize dynamic golden particles
       initParticles();
     }, 1700);
-  });
-
-  // --- AUDIO CONTROLLER ---
-  musicToggle.addEventListener('click', () => {
-    if (bgMusic.paused) {
-      bgMusic.play().then(() => {
-        musicToggle.classList.add('playing');
-      }).catch(err => console.log('Audio play failed: ', err));
-    } else {
-      bgMusic.pause();
-      musicToggle.classList.remove('playing');
-    }
   });
 
 
@@ -491,11 +465,10 @@ document.addEventListener('DOMContentLoaded', () => {
       mapUrl: document.getElementById('edit-map-url').value.trim(),
       yandexMapUrl: document.getElementById('edit-yandex-url').value.trim(),
       embedMapUrl: document.getElementById('edit-embed-url').value.trim(),
-      musicUrl: document.getElementById('edit-music').value.trim(),
       theme: document.getElementById('edit-theme').value
     };
 
-    localStorage.setItem('wedding_invitation_config', JSON.stringify(config));
+    localStorage.setItem('wedding_invitation_config_v2', JSON.stringify(config));
     
     // Apply changes instantly
     applyConfig();
